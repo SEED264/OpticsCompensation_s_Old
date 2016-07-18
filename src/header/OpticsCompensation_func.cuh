@@ -1,17 +1,17 @@
-#ifndef _OPTICSCOMPENSATION_GPU_CUH_
+ï»¿#ifndef _OPTICSCOMPENSATION_GPU_CUH_
 #define _OPTICSCOMPENSATION_GPU_CUH_
 
 #include "AUCUDA.cuh"
 
-/*    ƒŒƒ“ƒY•â³‚É“n‚·ƒpƒ‰ƒ[ƒ^[—p\‘¢‘Ì    */
+/*    ãƒ¬ãƒ³ã‚ºè£œæ­£ã«æ¸¡ã™ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ç”¨æ§‹é€ ä½“    */
 struct OpticsCompensation_Data{
-	//•Ï‰»—Ê
+	//å¤‰åŒ–é‡
 	float amount;
-	//Å“_‹——£
+	//ç„¦ç‚¹è·é›¢
 	float fd;
-	//1/Å“_‹——£
+	//1/ç„¦ç‚¹è·é›¢
 	float ofd;
-	//ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	//ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	OpticsCompensation_Data(float a){
 		amount = a / 100.f;
 		fd = 450 / tan(0.5 * amount * PI);
@@ -19,22 +19,22 @@ struct OpticsCompensation_Data{
 	}
 };
 
-/*    ’l‚ğ”ÍˆÍ“à‚ÉŠÛ‚ß‚éŠÖ”    */
+/*    å€¤ã‚’ç¯„å›²å†…ã«ä¸¸ã‚ã‚‹é–¢æ•°    */
 __device__ float clamp(float x, float a, float b);
 
-/*    Ø‚èã‚°—pŠÖ”    */
+/*    åˆ‡ã‚Šä¸Šã’ç”¨é–¢æ•°    */
 __host__ int RoundUp(float value, int radix);
 
-/*    ó‚¯æ‚Á‚½ƒf[ƒ^‚ğ4Ffloat‚É•ª‰ğ    */
+/*    å—ã‘å–ã£ãŸãƒ‡ãƒ¼ã‚¿ã‚’4è‰²floatã«åˆ†è§£    */
 __global__ void Separate(unsigned long *data, float *rt, float *gt, float *bt, float *at, int w, int h);
 
-/*    ’MŒ^ƒŒƒ“ƒY•â³    */
+/*    æ¨½å‹ãƒ¬ãƒ³ã‚ºè£œæ­£    */
 __global__ void Reverse(unsigned long *data, Idata id, OpticsCompensation_Data od, float2 pos2, float mag);
-/*    …Šª‚«Œ^ƒŒƒ“ƒY•â³    */
+/*    ç³¸å·»ãå‹ãƒ¬ãƒ³ã‚ºè£œæ­£    */
 __global__ void Normal(unsigned long *data, Idata id, OpticsCompensation_Data od, float2 pos2, float mag);
-/*    ÀÛ‚Éˆ—‚·‚éCoreŠÖ”    */
+/*    å®Ÿéš›ã«å‡¦ç†ã™ã‚‹Coreé–¢æ•°    */
 __host__ int OpticsCompensation_Core(lua_State *L);
 
-/*    ÀÛ‚Éˆ—‚·‚éCoreŠÖ”(Direct)    */
+/*    å®Ÿéš›ã«å‡¦ç†ã™ã‚‹Coreé–¢æ•°(Direct)    */
 __host__ int OpticsCompensation_Direct_Core(lua_State *L);
 #endif

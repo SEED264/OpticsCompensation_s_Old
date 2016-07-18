@@ -1,18 +1,18 @@
-#include "AUCUDA.cuh"
+ï»¿#include "AUCUDA.cuh"
 #include "OpticsCompensation_func.cuh"
 #define HPI PI/2.f
 
-/*    ’l‚ğ”ÍˆÍ“à‚ÉŠÛ‚ß‚éŠÖ”    */
+/*    å€¤ã‚’ç¯„å›²å†…ã«ä¸¸ã‚ã‚‹é–¢æ•°    */
 __device__ float clamp(float x, float a, float b){
 	return min(max(x, a), b);
 }
 
-/*    Ø‚èã‚°—pŠÖ”    */
+/*    åˆ‡ã‚Šä¸Šã’ç”¨é–¢æ•°    */
 __host__ int RoundUp(float value, int radix) {
 	return (value + radix - 1) / radix;
 }
 
-/*    ó‚¯æ‚Á‚½ƒf[ƒ^‚ğ4Ffloat‚É•ª‰ğ    */
+/*    å—ã‘å–ã£ãŸãƒ‡ãƒ¼ã‚¿ã‚’4è‰²floatã«åˆ†è§£    */
 __global__ void Separate(unsigned long *data, float *rt, float *gt, float *bt, float *at, int w, int h){
 	long ox = blockIdx.x;
 	long oy = blockIdx.y;
@@ -30,7 +30,7 @@ __global__ void Separate(unsigned long *data, float *rt, float *gt, float *bt, f
 	}
 }
 
-/*    ’MŒ^ƒŒƒ“ƒY•â³    */
+/*    æ¨½å‹ãƒ¬ãƒ³ã‚ºè£œæ­£    */
 __global__ void Reverse(unsigned long *data, Idata id, OpticsCompensation_Data od, float2 pos2, float mag){
 	float ox = (threadIdx.x + blockIdx.x * blockDim.x);
 	float oy = (threadIdx.y + blockIdx.y * blockDim.y);
@@ -63,7 +63,7 @@ __global__ void Reverse(unsigned long *data, Idata id, OpticsCompensation_Data o
 	}
 }
 
-/*    …Šª‚«Œ^ƒŒƒ“ƒY•â³    */
+/*    ç³¸å·»ãå‹ãƒ¬ãƒ³ã‚ºè£œæ­£    */
 __global__ void Normal(unsigned long *data, Idata id, OpticsCompensation_Data od, float2 pos2, float mag){
 	float ox = (threadIdx.x + blockIdx.x * blockDim.x);
 	float oy = (threadIdx.y + blockIdx.y * blockDim.y);
@@ -100,9 +100,9 @@ __global__ void Normal(unsigned long *data, Idata id, OpticsCompensation_Data od
 	}
 }
 
-/*    ÀÛ‚Éˆ—‚·‚éCoreŠÖ”    */
+/*    å®Ÿéš›ã«å‡¦ç†ã™ã‚‹Coreé–¢æ•°    */
 __host__ int OpticsCompensation_Core(lua_State *L){
-	// ‰æ‘œƒf[ƒ^A•A‚‚³“™‚Ìƒpƒ‰ƒ[ƒ^‚ğæ“¾
+	// ç”»åƒãƒ‡ãƒ¼ã‚¿ã€å¹…ã€é«˜ã•ç­‰ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—
 	unsigned long *data = (unsigned long*)lua_touserdata(L, 1);
 	int w = (int)lua_tonumber(L, 2);
 	int h = (int)lua_tonumber(L, 3);
@@ -198,18 +198,18 @@ __host__ int OpticsCompensation_Core(lua_State *L){
 	lua_pushinteger(L, nw);
 	lua_pushinteger(L, nh);
 	return 3;
-	// Lua ‘¤‚Å‚Ì–ß‚è’l‚ÌŒÂ”‚ğ•Ô‚·
+	// Lua å´ã§ã®æˆ»ã‚Šå€¤ã®å€‹æ•°ã‚’è¿”ã™
 }
 
-/*    ÀÛ‚Éˆ—‚·‚éCoreŠÖ”(Direct)    */
+/*    å®Ÿéš›ã«å‡¦ç†ã™ã‚‹Coreé–¢æ•°(Direct)    */
 __host__ int OpticsCompensation_Direct_Core(lua_State *L){
-	// ‰æ‘œƒf[ƒ^A•A‚‚³“™‚Ìƒpƒ‰ƒ[ƒ^‚ğæ“¾
+	// ç”»åƒãƒ‡ãƒ¼ã‚¿ã€å¹…ã€é«˜ã•ç­‰ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—
 	float l = (float)lua_tonumber(L, 1);
 	int argnum = lua_gettop(L);
 	float x = (argnum >= 2) ? (float)lua_tonumber(L, 2) : 0;
 	float y = (argnum >= 3) ? (float)lua_tonumber(L, 3) : 0;
 
-	/*    AviUtl‚Ìobj.getpixeldata()ŒÄ‚Ño‚µ    */
+	/*    AviUtlã®obj.getpixeldata()å‘¼ã³å‡ºã—    */
 	lua_getglobal(L, "obj");
 	lua_getfield(L, -1, "getpixeldata");
 	lua_call(L, 0, 3);
@@ -292,7 +292,7 @@ __host__ int OpticsCompensation_Direct_Core(lua_State *L){
 
 		cudaMemcpy(datan, datat, sizeof(unsigned long)*nw*nh, cudaMemcpyDeviceToHost);
 
-		/*    AviUtl‚Ìobj.putpixeldata()ŒÄ‚Ño‚µ    */
+		/*    AviUtlã®obj.putpixeldata()å‘¼ã³å‡ºã—    */
 		lua_getglobal(L, "obj");
 		lua_getfield(L, -1, "putpixeldata");
 		lua_pushlightuserdata(L, datan);
@@ -314,5 +314,5 @@ __host__ int OpticsCompensation_Direct_Core(lua_State *L){
 		cudaFree(at);
 	}
 	return 0;
-	// Lua ‘¤‚Å‚Ì–ß‚è’l‚ÌŒÂ”‚ğ•Ô‚·
+	// Lua å´ã§ã®æˆ»ã‚Šå€¤ã®å€‹æ•°ã‚’è¿”ã™
 }
