@@ -1,18 +1,18 @@
-#include "AUCUDA.cuh"
+ï»¿#include "AUCUDA.cuh"
 #include "OpticsCompensation_func.cuh"
 
-/*    Lua‚©‚çƒf[ƒ^‚ğó‚¯æ‚Á‚Ä‚»‚Ì‚Ü‚ÜCoreŠÖ”‚ğŒÄ‚Ño‚·    */
+/*    Luaã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’å—ã‘å–ã£ã¦ãã®ã¾ã¾Coreé–¢æ•°ã‚’å‘¼ã³å‡ºã™    */
 int OpticsCompensation(lua_State *L){
 	int r = OpticsCompensation_Core(L);
 	return r;
-	// Lua ‘¤‚Å‚Ì–ß‚è’l‚ÌŒÂ”‚ğ•Ô‚·
+	// Lua å´ã§ã®æˆ»ã‚Šå€¤ã®å€‹æ•°ã‚’è¿”ã™
 }
 
-/*    Lua‚©‚çƒf[ƒ^‚ğó‚¯æ‚Á‚Ä‚»‚Ì‚Ü‚ÜCoreŠÖ”(Direct)‚ğŒÄ‚Ño‚·    */
+/*    Luaã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’å—ã‘å–ã£ã¦ãã®ã¾ã¾Coreé–¢æ•°(Direct)ã‚’å‘¼ã³å‡ºã™    */
 int OpticsCompensation_Direct(lua_State *L){
 	int r = OpticsCompensation_Direct_Core(L);
 	return r;
-	// Lua ‘¤‚Å‚Ì–ß‚è’l‚ÌŒÂ”‚ğ•Ô‚·
+	// Lua å´ã§ã®æˆ»ã‚Šå€¤ã®å€‹æ•°ã‚’è¿”ã™
 }
 
 static luaL_Reg OpticsCompensation_s[] = {
@@ -22,10 +22,10 @@ static luaL_Reg OpticsCompensation_s[] = {
 };
 
 /*
-‚±‚±‚Ådll‚ğ’è‹`‚µ‚Ü‚·
-•Ê‚Ì‚à‚Ì‚ğì‚éê‡‚Í
+ã“ã“ã§dllã‚’å®šç¾©ã—ã¾ã™
+åˆ¥ã®ã‚‚ã®ã‚’ä½œã‚‹å ´åˆã¯
 OpticsCompensation_s
-‚Ì•”•ª‚ğV‚µ‚¢–¼‘O‚É•Ï‚¦‚Ä‚­‚¾‚³‚¢
+ã®éƒ¨åˆ†ã‚’æ–°ã—ã„åå‰ã«å¤‰ãˆã¦ãã ã•ã„
 */
 extern "C"{
 	__declspec(dllexport) int luaopen_OpticsCompensation_s(lua_State *L) {

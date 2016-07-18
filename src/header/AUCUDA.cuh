@@ -1,4 +1,4 @@
-#ifndef _AUCUDA_CUH_
+ï»¿#ifndef _AUCUDA_CUH_
 #define _AUCUDA_CUH_
 
 #include <stdio.h>
@@ -11,7 +11,7 @@
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
 
-/*    ‰æ‘œ‚Ì‚‚³“™‚Ìƒf[ƒ^—p\‘¢‘Ì    */
+/*    ç”»åƒã®é«˜ã•ç­‰ã®ãƒ‡ãƒ¼ã‚¿ç”¨æ§‹é€ ä½“    */
 struct Idata{
 	//Width
 	int w;
@@ -21,7 +21,7 @@ struct Idata{
 	float hw;
 	//Half Height
 	float hh;
-	//ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	//ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	Idata(int width, int height){
 		w = width;
 		h = height;
@@ -30,10 +30,10 @@ struct Idata{
 	}
 };
 
-/*    ‚½‚Ü‚Ég‚¤‰~ü—¦    */
+/*    ãŸã¾ã«ä½¿ã†å††å‘¨ç‡    */
 #define PI 3.141592653589793
 
-/*    ƒeƒNƒXƒ`ƒƒƒŠƒtƒ@ƒŒƒ“ƒX    */
+/*    ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹    */
 texture<float, 2, cudaReadModeElementType> rtex;
 texture<float, 2, cudaReadModeElementType> gtex;
 texture<float, 2, cudaReadModeElementType> btex;
