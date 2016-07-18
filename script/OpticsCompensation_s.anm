@@ -1,0 +1,9 @@
+--track0:ï‚ê≥ó ,-100.0,100.0,0.0,0.1
+--track1:X,-3600.0,3600.0,0.0,0.1
+--track2:Y,-3600.0,3600.0,0.0,0.1
+--dialog:í«â¡ç¿ïW,pos={0,0};
+obj.setanchor("pos",1)
+require("OpticsCompensation_s")
+data, w, h = obj.getpixeldata()
+datan, nw, nh= OpticsCompensation_s.OpticsCompensation(data, w, h, obj.track0, obj.track1+pos[1], obj.track2+pos[2])
+obj.putpixeldata(datan)
