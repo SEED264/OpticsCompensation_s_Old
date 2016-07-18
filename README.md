@@ -1,29 +1,29 @@
-# OpticsCompensation_s
+﻿# OpticsCompensation_s
 
 OpticsCompensation with CUDA for AviUtl
 
-## �͂��߂�
-�ǂ����ASEED264�ł��B  
-����݂͂�ȑ�D�������Y�␳�����܂����B
-�������삵�Ȃ������牓���Ȃ����܂œ����˂����n����Y�ƕ���𓊂��ɗ��Ă��������B
+## はじめに
+どうも、SEED264です。  
+今回はみんな大好きレンズ補正を作りました。
+もし動作しなかったら遠慮なく私まで動かねぇぞ馬鹿野郎と文句を投げに来てください。
 
-## ����
-�������@�Ɋւ��Ă͕��ʂ̃X�N���v�g�Ɠ����ł��B  
-�������Ă���.anm��.dll�t�@�C�����X�N���v�g�t�H���_�ɂԂ�����ł��������B  
-���߂�CUDA�X�N���v�g���g���l�͓������Ă���cudart32_75.dll��aviutl.exe�Ɠ����K�w�̃t�H���_�ɂԂ񓊂��Ă��������B
+## 導入
+導入方法に関しては普通のスクリプトと同じです。  
+同梱してある.anmと.dllファイルをスクリプトフォルダにぶち込んでください。  
+初めてCUDAスクリプトを使う人は同梱してあるcudart32_75.dllをaviutl.exeと同じ階層のフォルダにぶん投げてください。
 
-## �g����
-�����قǂ̂��Ƃł͂���܂��񂪈ꉞ�����Ă����܂��B  
-�␳�ʂ�ς���ƌ��̉摜���c�݂܂��B  
-�␳�ʂ������Ǝ������^�����Y�␳�A�����ƒM�^�����Y�␳�ƂȂ�܂��B  
-X��Y�͕␳�̒��S�_�̍��W�𓮂����܂��B  
-�_�C�A���O�{�b�N�X�ɂ�����W�͂��̂܂܉��Z�����̂ŁA�X�N���v�g����Ƃ��ɂł��g���Ƃ����Ǝv���܂��B
+## 使い方
+書くほどのことではありませんが一応書いておきます。  
+補正量を変えると元の画像が歪みます。  
+補正量が正だと糸巻き型レンズ補正、負だと樽型レンズ補正となります。  
+XとYは補正の中心点の座標を動かします。  
+ダイアログボックスにある座標はそのまま加算されるので、スクリプト制御とかにでも使うといいと思います。
 
 ## DeviceQuery
-�ꏏ�ɓ����Ă���deviceQuery.exe�́APC�ɐς�ł�CUDA�Ή�GPU�̏������邱�Ƃ��ł��܂��B  
-CUDA�̃T���v���R�[�h���r���h���������Ȃ̂łǂ��ł��������͂킩��܂���B
+一緒に入っているdeviceQuery.exeは、PCに積んでるCUDA対応GPUの情報を見ることができます。  
+CUDAのサンプルコードをビルドしただけなのでどこでも動くかはわかりません。
 
-## ������
-���ɉ����m�肽�����Ƃ�����܂�����A���܂Œ��ڕ����Ă���������΂ł�����肨�������܂��B
+## おわりに
+他に何か知りたいことがありましたら、私まで直接聞いていただければできる限りお答えします。
 
-���Twitter:https://twitter.com/SEED264
+作者Twitter:https://twitter.com/SEED264
