@@ -10,6 +10,7 @@
 #include "cuda.h"
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
+using namespace std;
 
 /*    画像の高さ等のデータ用構造体    */
 struct Idata{

@@ -37,4 +37,7 @@ __host__ int OpticsCompensation_Core(lua_State *L);
 
 /*    実際に処理するCore関数(Direct)    */
 __host__ int OpticsCompensation_Direct_Core(lua_State *L);
+
+/*    DLLのバージョンや関数等の情報表示    */
+__host__ int info(lua_State *L);
 #endif

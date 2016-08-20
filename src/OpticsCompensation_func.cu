@@ -316,3 +316,89 @@ __host__ int OpticsCompensation_Direct_Core(lua_State *L){
 	return 0;
 	// Lua 側での戻り値の個数を返す
 }
+
+/*    DLLのバージョンや関数等の情報表示    */
+__host__ int info(lua_State *L){
+	string version = "1.10";
+	string funclist[] = {
+		"    ・OpticsCompensation",
+		"    ・OpticsCompensation_Direct"
+	};
+	string info = "Version : " + version + "\n\n<s40>Available functions<s>\n";
+	for (int i = 0; i < sizeof(funclist)/sizeof(funclist[0]); i++){
+		info += funclist[i] + "\n";
+	}
+
+	lua_getglobal(L, "obj");
+
+	lua_getfield(L, -1, "effect");
+	lua_call(L, 0, 0);
+
+	lua_getfield(L, -1, "draw");
+	lua_call(L, 0, 0);
+
+	lua_getfield(L, -1, "load");
+	lua_pushstring(L, "figure");
+	lua_pushstring(L, "四角形");
+	lua_pushinteger(L, 0);
+	lua_pushinteger(L, 550);
+	lua_call(L, 4, 0);
+
+	lua_getfield(L, -1, "effect");
+	lua_pushstring(L, "リサイズ");
+	lua_pushstring(L, "Y");
+	lua_pushnumber(L, 55);
+	lua_call(L, 3, 0);
+
+	lua_getfield(L, -1, "draw");
+	lua_pushinteger(L, 0);
+	lua_pushinteger(L, 0);
+	lua_pushinteger(L, 0);
+	lua_pushinteger(L, 1);
+	lua_pushnumber(L, 0.75);
+	lua_call(L, 5, 0);
+
+	lua_getfield(L, -1, "load");
+	lua_pushstring(L, "figure");
+	lua_pushstring(L, "四角形");
+	lua_pushinteger(L, 0xaaaaaa);
+	lua_pushinteger(L, 500);
+	lua_call(L, 4, 0);
+
+	lua_getfield(L, -1, "effect");
+	lua_pushstring(L, "リサイズ");
+	lua_pushstring(L, "Y");
+	lua_pushnumber(L, 50);
+	lua_call(L, 3, 0);
+
+	lua_getfield(L, -1, "draw");
+	lua_pushinteger(L, 0);
+	lua_pushinteger(L, 0);
+	lua_pushinteger(L, 0);
+	lua_pushinteger(L, 1);
+	lua_pushnumber(L, 0.3);
+	lua_call(L, 5, 0);
+
+	lua_getfield(L, -1, "setfont");
+	lua_pushstring(L, "メイリオ");
+	lua_pushinteger(L, 30);
+	lua_pushinteger(L, 1);
+	lua_pushinteger(L, 0xffffff);
+	lua_pushinteger(L, 0x444444);
+	lua_call(L, 5, 0);
+
+	lua_getfield(L, -1, "load");
+	lua_pushstring(L, "text");
+	lua_pushstring(L, info.c_str());
+	lua_call(L, 2, 0);
+
+	lua_getfield(L, -1, "draw");
+	lua_pushinteger(L, 0);
+	lua_pushinteger(L, 0);
+	lua_pushinteger(L, 0);
+	lua_pushinteger(L, 1);
+	lua_pushnumber(L, 1);
+	lua_call(L, 5, 0);
+
+	return 0;
+}
