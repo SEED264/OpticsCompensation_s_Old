@@ -16,6 +16,7 @@ int OpticsCompensation_Direct(lua_State *L){
 }
 
 static luaL_Reg OpticsCompensation_s[] = {
+	{"info", info},
 	{ "OpticsCompensation", OpticsCompensation },
 	{ "OpticsCompensation_Direct", OpticsCompensation_Direct },
 	{ NULL, NULL }
